@@ -1,21 +1,24 @@
 {{- define "main" }}
-{{ $packageName := replace (path.Dir .File.Dir) "_" "/" 1 }}
 
-<ul class="tagsList single">
-  {{ range (.GetTerms "tags") }}
-  <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-  {{ end }}
-</ul>
+{{ if ne .File.Dir "static/" }}
+  {{ $packageName := replace (path.Dir .File.Dir) "_" "/" 1 }}
 
-<p>
-  Package: <a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a><br />
-  Author: {{ .Params.author }}<br />
-  License: {{ .Params.license }}<br />
-  Verified Optuna version:
-  {{ range (.GetTerms "optuna_versions") }}
-    {{ .LinkTitle }}
-  {{ end }}<br />
-</p>
+  <ul class="tagsList single">
+    {{ range (.GetTerms "tags") }}
+    <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+    {{ end }}
+  </ul>
+
+  <p>
+    Package: <a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a><br />
+    Author: {{ .Params.author }}<br />
+    License: {{ .Params.license }}<br />
+    Verified Optuna version:
+    {{ range (.GetTerms "optuna_versions") }}
+      {{ .LinkTitle }}
+    {{ end }}<br />
+  </p>
+{{- end }}
 
 <div class="content">{{ .Content }}</div>
 
