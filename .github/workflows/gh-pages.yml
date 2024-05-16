@@ -1,0 +1,61 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch name to trigger deployment
+  schedule:
+      - cron: '0 * * * *'  # Update every hour
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+        contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name:
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.124.1'
+
+      - name: Checkout Registry
+        uses: actions/checkout@v4
+        with:
+          repository: optuna/optunahub-registry
+          path: optunahub-registry
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: 3.11
+
+      - name: Prepare Contents
+        run: python hugo_build.py
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
