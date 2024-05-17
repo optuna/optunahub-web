@@ -1,6 +1,6 @@
 ---
 title: OptunaHub Registry
-description: Registry of the OptunaHub packages
+description: Registry of the third-party Optuna packages.
 ---
 
-**OptunaHub** is a collection of third-party packages for [Optuna](https://github.com/optuna/optuna).
+The [optunahub](https://github.com/optuna/optunahub) library is required to use the packages in this registry.
