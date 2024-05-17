@@ -1,4 +1,4 @@
-baseURL: https://hub.optuna.org/
+baseURL: https://optuna.github.io/optunahub-web/
 languageCode: en-us
 title: OptunaHub
 theme: index
