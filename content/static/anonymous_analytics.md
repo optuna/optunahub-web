@@ -14,7 +14,6 @@ We collect the following data:
 - The version of the OptunaHub.
 - The name of the used package in the OptunaHub.
 - The git hash of the used package in the OptunaHub Registry, if the package is from the OptunaHub Registry.
-- The region of the user. This is automatically detected by Google Analytics.
 
 ### How is the data used?
 
