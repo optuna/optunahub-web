@@ -5,7 +5,7 @@ title: Anonymous Analytics
 ## Anonymous Analytics
 
 [The OptunaHub library](https://github.com/optuna/optunahub) collects anonymous usage data when loading packages from [the official OptunaHub registry](https://github.com/optuna/optunahub-registry).
-This data is used to improve the service and is not shared with any third parties.
+This data is only utilized to improve the service.
 You can opt-out of the collection of this data.
 See the last section of this document for instructions on how to opt-out.
 
@@ -22,10 +22,9 @@ We collect the following data.
 
 ### How is the data used?
 
-The data is used to improve the service.
+The data is only utilised to improve the service.
 For example, we use the data to understand which features are used most frequently and which features are not used at all.
 This helps us to prioritize the development of new features and to improve existing features.
-The data is not shared with any third parties.
 
 ### How to opt-out
 
