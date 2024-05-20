@@ -4,7 +4,7 @@ title: Anonymous Analytics
 
 ## Anonymous Analytics
 
-[The OptunaHub library](https://github.com/optuna/optunahub) collects anonymous usage data.
+[The OptunaHub library](https://github.com/optuna/optunahub) collects anonymous usage data when loading packages from [the official OptunaHub registry](https://github.com/optuna/optunahub-registry).
 This data is used to improve the service and is not shared with any third parties.
 You can opt-out of the collection of this data.
 See the last section of this document for instructions on how to opt-out.
@@ -15,7 +15,7 @@ We collect the following data.
 - If the running environment is CI or not.
 - The version of the Optuna.
 - The version of the OptunaHub library.
-- The name of the used package in the OptunaHub.
+- The name of the loaded package.
 - The Git reference (branch, tag, or commit SHA) for the package.
 
 *No personal information is collected.*
