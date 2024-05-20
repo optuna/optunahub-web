@@ -1,9 +1,9 @@
 <footer>
     <hr>
     <div class="footer-text">
+        <div>{{- (site.Copyright | markdownify) | default (printf "© %d %s" now.Year site.Title) -}}</div>
         <div><a href="{{ "" | absURL }}/static/terms_of_use/">Terms of Use</a></div>
         <div><a href="{{ "" | absURL }}/static/anonymous_analytics/">Anonymous Analytics</a></div>
-        <div>{{- (site.Copyright | markdownify) | default (printf "© %d %s" now.Year site.Title) -}}</div>
         <div>Powered by <a href="https://gohugo.io/">Hugo</a> & <a
                 href="https://github.com/adityatelange/hugo-index/">Index</a></div>
     </div>
