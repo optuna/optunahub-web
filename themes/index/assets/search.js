@@ -43,9 +43,15 @@ searchBox.addEventListener('input', () => {
                 <tbody>
                     <td style="text-align: left; vertical-align: top;">
                         <div style="display: inline-flex; flex-shrink: 0;">
+            `;
+            // If the item is a visualization package, show the thumbnail.
+            if (results[item].item.permalink.includes('visualization_')) {
+                resultSet += `
                             <figure style="margin: 1rem 1rem 0 0; width: 40%;">
-                                <a href="${results[item].item.permalink}"><img src="${results[item].item.permalink}images/thumbnail.png" width="100%" onerror="this.parentNode.parentNode.style.display='none'" /></a>
-                            </figure>
+                                <a href="${results[item].item.permalink}"><img src="${results[item].item.permalink}images/thumbnail.png" width="100%"" /></a>
+                            </figure>`;
+            }
+            resultSet += `
                             <p>
                                 ${results[item].item.description}
                             </p>
@@ -77,9 +83,15 @@ searchBox.addEventListener('input', () => {
                 <tbody>
                     <td style="text-align: left; vertical-align: top;">
                     <div style="display: inline-flex; flex-shrink: 0;">
+            `;
+            // If the item is a visualization package, show the thumbnail.
+            if (item.permalink.includes('visualization_')) {
+                resultSet += `
                         <figure style="margin: 1rem 1rem 0 0; width: 40%;">
-                            <a href="${item.permalink}"><img src="${item.permalink}images/thumbnail.png" width="100%" onerror="this.parentNode.parentNode.style.display='none'" /></a>
-                        </figure>
+                            <a href="${item.permalink}"><img src="${item.permalink}images/thumbnail.png" width="100%"" /></a>
+                        </figure>`;
+            }
+            resultSet += `
                         <p>
                             ${item.description}
                         </p>
