@@ -26,7 +26,7 @@ window.onload = () => {
 searchBox.addEventListener('input', () => {
     let resultSet = '';
     let results = fuse.search(searchBox.value);
-    if (results.length !== 0) {
+    if (searchBox.value !== '') {
         for (let item in results) {
             let tagList = '';
             if (results[item].item.tags) {
