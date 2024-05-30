@@ -1,6 +1,7 @@
 {{ $scratch := newScratch }}
 {{- $scratch.Add "index" slice -}}
-{{- range .RegularPages}}
+{{- range .RegularPagesRecursive}}
+    {{- if strings.Contains .Permalink "static/" -}}{{continue}}{{end -}}
     {{- $scratch.Add "tags" slice -}}
     {{- range (.GetTerms "tags") }}
         {{- $scratch.Add "tags" (dict "title" .LinkTitle "permalink" .RelPermalink) }}
