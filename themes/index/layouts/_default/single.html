@@ -1,7 +1,7 @@
 {{- define "main" }}
 
 {{ if ne .File.Dir "static/" }}
-  {{ $packageName := replace (path.Dir .File.Dir) "_" "/" 1 }}
+  {{ $packageName := path.Dir .File.Dir }}
 
   <ul class="tagsList single">
     {{ range (.GetTerms "tags") }}
