@@ -8,7 +8,7 @@ def main():
     for c in categories:
         packages = os.listdir(f"{registry_dir}/{c}")
         for p in packages:
-            hugo_dir = f"content/{c}_{p}"
+            hugo_dir = f"content/{c}/{p}"
             os.makedirs(hugo_dir, exist_ok=True)
             shutil.copy(f"{registry_dir}/{c}/{p}/README.md", f"{hugo_dir}/index.md")
             imgdir = f"{registry_dir}/{c}/{p}/images"

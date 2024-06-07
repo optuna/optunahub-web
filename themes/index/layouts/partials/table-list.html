@@ -1,6 +1,7 @@
 <div id="tableListBox" style="display: flex; justify-content: space-between; margin: 0px; flex-wrap: wrap; flex-shrink: 0;">
-  {{- range .RegularPages.ByLastmod.Reverse}}
-    {{- $is_visualization := strings.Contains .Permalink "visualization_" }}
+  {{- range .RegularPagesRecursive.ByLastmod.Reverse}}
+    {{- if strings.Contains .Permalink "static/" -}}{{continue}}{{end -}}
+    {{- $is_visualization := strings.Contains .Permalink "visualization/" }}
     {{- if $is_visualization}}
       <div class="package-box">
         <table style="margin: 0.2rem; height: 100%;">
