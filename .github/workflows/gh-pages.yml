@@ -31,7 +31,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: optuna/optunahub-registry
-          token: ${{ secrets.SECRET_GITHUB_TOKEN }}
           path: optunahub-registry
 
       - name: Setup Python
