@@ -4,7 +4,7 @@ import shutil
 
 def main():
     registry_dir = "optunahub-registry/package"
-    categories = ["samplers", "visualization"]
+    categories = ["samplers", "pruners", "visualization"]
     for c in categories:
         packages = os.listdir(f"{registry_dir}/{c}")
         for p in packages:

@@ -12,5 +12,6 @@ clean:
 	rm -rf optunahub-registry
 	rm -rf public
 	rm -rf content/samplers*
+	rm -rf content/pruners*
 	rm -rf content/vizualization*
 	rm -f .hugo_build.lock
