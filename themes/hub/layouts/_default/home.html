@@ -1,6 +1,7 @@
 {{ define "main" }}
   {{ .Content }}
-  {{ range site.RegularPages }}
+  {{ range .RegularPagesRecursive }}
+    {{- if strings.Contains .Permalink "static/" }}{{ continue }}{{ end }}
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
     {{ .Summary }}
   {{ end }}

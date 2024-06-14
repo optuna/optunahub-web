@@ -1,2 +1,16 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<header>
+  <h1>
+    <a href="{{ "" | absURL }}">
+      {{- site.Title -}}
+    </a>
+    {{- if and (not .IsHome) (not (eq .Kind "404")) }}
+    <span aria-hidden="true">/</span>
+    <a href="{{ .Permalink }}">
+      {{- .Title -}}
+    </a>
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <p>{{ .Description }}</p>
+  {{- end }}
+</header>

@@ -1,10 +1,30 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  {{- if not (strings.Contains .Permalink "static/") }}
+  {{- $packageName := path.Dir .File.Dir }}
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <ul>
+    {{- range (.GetTerms "tags") }}
+    <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+
+  <dl>
+    <dt>Package</dt>
+    <dd><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
+    <dt>Author</dt>
+    <dd>{{ .Params.author }}</dd>
+    <dt>License</dt>
+    <dd>{{ .Params.license }}</dd>
+    <dt>Verified Optuna version</dt>
+    <dd>
+      <ul>
+        {{- range (.GetTerms "optuna_versions") }}
+        <li>{{ .LinkTitle }}</li>
+        {{- end }}
+      </ul>
+    </dd>
+  </dl>
+  {{- end }}
 
   {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}
