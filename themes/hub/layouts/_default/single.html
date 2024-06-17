@@ -2,24 +2,24 @@
   {{- if not (strings.Contains .Permalink "static/") }}
   {{- $packageName := path.Dir .File.Dir }}
 
-  <ul>
+  <ul class="nav gap-1 mb-3">
     {{- range (.GetTerms "tags") }}
-    <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+    <li class="nav-item"><a href="{{ .Permalink }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
     {{- end }}
   </ul>
 
   <dl>
-    <dt>Package</dt>
-    <dd><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
-    <dt>Author</dt>
-    <dd>{{ .Params.author }}</dd>
-    <dt>License</dt>
-    <dd>{{ .Params.license }}</dd>
-    <dt>Verified Optuna version</dt>
-    <dd>
+    <dt class="float-start me-2">Package</dt>
+    <dd class="clearfix"><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
+    <dt class="float-start me-2">Author</dt>
+    <dd class="clearfix">{{ .Params.author }}</dd>
+    <dt class="float-start me-2">License</dt>
+    <dd class="clearfix">{{ .Params.license }}</dd>
+    <dt class="float-start me-2">Verified Optuna version</dt>
+    <dd class="clearfix">
       <ul>
         {{- range (.GetTerms "optuna_versions") }}
-        <li>{{ .LinkTitle }}</li>
+        <li class="d-inline">{{ .LinkTitle }}</li>
         {{- end }}
       </ul>
     </dd>

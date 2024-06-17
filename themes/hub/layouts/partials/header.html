@@ -1,14 +1,19 @@
 <header>
   <h1>
-    <a href="{{ "" | absURL }}">
-      {{- site.Title -}}
-    </a>
-    {{- if and (not .IsHome) (not (eq .Kind "404")) }}
-    <span aria-hidden="true">/</span>
-    <a href="{{ .Permalink }}">
-      {{- .Title -}}
-    </a>
-    {{- end }}
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{ "" | absURL }}">
+          {{- site.Title -}}
+        </a>
+      </li>
+      {{- if and (not .IsHome) (not (eq .Kind "404")) }}
+      <li class="breadcrumb-item">
+        <a href="{{ .Permalink }}">
+          {{- .Title -}}
+        </a>
+      </li>
+      {{- end }}
+    </ol>
   </h1>
   {{- if .Description }}
   <p>{{ .Description }}</p>
