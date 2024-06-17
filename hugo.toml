@@ -13,6 +13,9 @@ enableRobotsTXT = true
   optuna_version = 'optuna_versions'
   tag = 'tags'
 
+[outputs]
+  home = ['html', 'rss', 'json']
+
 [markup]
   [markup.highlight]
     guessSyntax = true
