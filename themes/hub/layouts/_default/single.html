@@ -4,7 +4,7 @@
 
   <ul class="nav gap-1 mb-3">
     {{- range (.GetTerms "tags") }}
-    <li class="nav-item"><a href="{{ .Permalink }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
+    <li class="nav-item"><a href="{{ printf "/?%s" ((querify "q" .LinkTitle) | safeURL) }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
     {{- end }}
   </ul>
 

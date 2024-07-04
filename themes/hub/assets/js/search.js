@@ -2,7 +2,7 @@ const { createApp, ref, computed } = Vue;
 
 const app = createApp({
   setup() {
-    const query = ref('');
+    const query = ref(new URLSearchParams(location.search).get('q') || '');
     const fuse = ref(null);
     const docs = computed(() => {
       if (fuse.value) {
@@ -27,6 +27,9 @@ const app = createApp({
     return {
       query,
       docs,
+      onSubmit() {
+        history.pushState('', '', `/?${new URLSearchParams({ q: query.value })}`);
+      },
     };
   },
 });
