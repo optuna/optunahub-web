@@ -10,14 +10,14 @@
 
   <dl>
     <dt class="float-start me-2">Package</dt>
-    <dd class="clearfix"><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
+    <dd class="clearfix mb-1"><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
     <dt class="float-start me-2">Author</dt>
-    <dd class="clearfix">{{ .Params.author }}</dd>
+    <dd class="clearfix mb-1">{{ .Params.author }}</dd>
     <dt class="float-start me-2">License</dt>
-    <dd class="clearfix">{{ .Params.license }}</dd>
+    <dd class="clearfix mb-1">{{ .Params.license }}</dd>
     <dt class="float-start me-2">Verified Optuna version</dt>
-    <dd class="clearfix">
-      <ul>
+    <dd class="clearfix mb-1">
+      <ul class="m-0">
         {{- range (.GetTerms "optuna_versions") }}
         <li class="d-inline">{{ .LinkTitle }}</li>
         {{- end }}
