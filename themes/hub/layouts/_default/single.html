@@ -1,0 +1,30 @@
+{{ define "main" }}
+  {{- if not (strings.Contains .Permalink "static/") }}
+  {{- $packageName := path.Dir .File.Dir }}
+
+  <ul class="nav gap-1 mb-3">
+    {{- range (.GetTerms "tags") }}
+    <li class="nav-item"><a href="{{ printf "/?%s" ((querify "q" .LinkTitle) | safeURL) }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+
+  <dl>
+    <dt class="float-start me-2">Package</dt>
+    <dd class="clearfix mb-1"><a href="https://github.com/optuna/optunahub-registry/tree/main/package/{{ $packageName }}">{{ $packageName }}</a></dd>
+    <dt class="float-start me-2">Author</dt>
+    <dd class="clearfix mb-1">{{ .Params.author }}</dd>
+    <dt class="float-start me-2">License</dt>
+    <dd class="clearfix mb-1">{{ .Params.license }}</dd>
+    <dt class="float-start me-2">Verified Optuna version</dt>
+    <dd class="clearfix mb-1">
+      <ul class="m-0">
+        {{- range (.GetTerms "optuna_versions") }}
+        <li class="d-inline">{{ .LinkTitle }}</li>
+        {{- end }}
+      </ul>
+    </dd>
+  </dl>
+  {{- end }}
+
+  {{ .Content }}
+{{ end }}

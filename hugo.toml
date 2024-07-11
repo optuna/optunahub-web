@@ -1,0 +1,27 @@
+baseURL = 'https://hub.optuna.org/'
+languageCode = 'en-us'
+title = 'OptunaHub'
+theme = 'hub'
+
+enableRobotsTXT = true
+
+[permalinks]
+  optuna_versions = 'optuna_versions/:slug'
+  tags = 'tags/:slug'
+
+[taxonomies]
+  optuna_version = 'optuna_versions'
+  tag = 'tags'
+
+[outputs]
+  home = ['html', 'rss', 'json']
+
+[markup]
+  [markup.highlight]
+    guessSyntax = true
+    style = 'friendly'
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.116.0'

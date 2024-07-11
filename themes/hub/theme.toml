@@ -1,0 +1,19 @@
+name = 'Hub'
+license = 'MIT'
+licenselink = 'https://github.com/optuna/optunahub-web/blob/main/themes/hub/LICENSE'
+description = ''
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/optuna/optunahub-web/tree/main/themes/hub'
+
+# If you have a running demo of the theme
+demosite = 'https://hub.optuna.org/'
+
+# Taxonomy terms
+tags = []
+features = []
+
+# If the theme has a single author
+[author]
+  name = 'Preferred Networks, Inc.'
+  homepage = 'https://preferred.jp/'

@@ -1,0 +1,35 @@
+{{ define "main" }}
+  {{ .Content }}
+
+  <div id="search" v-cloak>
+    <form @submit.stop.prevent="onSubmit">
+      <input name="q" class="form-control" v-model="query" placeholder="Search..." />
+    </form>
+    <div class="row">
+      <div class="col-12 col-md-6 mt-4 d-flex" v-for="doc in docs">
+        <div class="card w-100">
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5"><a :href="[[ doc.item.permalink ]]">[[ doc.item.title ]]</a></h2>
+            <div class="flex-grow-1">
+              <img :src="[[ doc.item.image ]]" class="float-start w-25 me-2 mb-2" v-if="doc.item.image" />
+              <p>[[ doc.item.description ]]</p>
+            </div>
+            <ul class="nav gap-1">
+              <li class="nav-item" v-for="tag in doc.item.tags">
+                <a class="badge text-primary border border-primary" :href="[[ tag.permalink ]]">[[ tag.title ]]</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{- if eq hugo.Environment "development" }}
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  {{- else }}
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  {{- end }}
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  {{ partialCached "head/search-js.html" . }}
+{{ end }}
