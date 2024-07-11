@@ -19,6 +19,7 @@ const app = createApp({
       .then((data) => {
         fuse.value = new Fuse(data, {
           threshold: 0.1,
+          ignoreLocation: true,
           useExtendedSearch: true,
           keys: ['title', 'description', 'tags.title'],
         });
