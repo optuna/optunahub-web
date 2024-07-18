@@ -23,9 +23,9 @@
     <dt class="float-start me-2">Verified Optuna version</dt>
     <dd class="clearfix mb-1">
       <ul class="m-0">
-        {{- range (.GetTerms "optuna_versions") }}
-        <li class="d-inline">{{ .LinkTitle }}</li>
-        {{- end }}
+        {{- range (.GetTerms "optuna_versions") -}}
+        <li class="d-inline me-1">{{ .LinkTitle }}</li>
+        {{- end -}}
       </ul>
     </dd>
     <dt class="float-start me-2">Last update</dt>
