@@ -1,0 +1,1 @@
+<img src="{{ .Destination | safeURL }}" class="img-fluid" loading="lazy" {{- with .Text }} alt="{{ . }}"{{ end -}} {{- with .Title }} title="{{ . }}"{{ end -}}>

@@ -25,11 +25,6 @@ a:hover {
   padding: 0.25rem 0.5rem;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 li.linkedin-share-button > span {
   vertical-align: baseline !important;
 }
