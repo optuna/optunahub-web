@@ -28,3 +28,7 @@ a:hover {
 li.linkedin-share-button > span {
   vertical-align: baseline !important;
 }
+
+.navbar {
+  --bs-navbar-nav-link-padding-x: 0.75rem;
+}
