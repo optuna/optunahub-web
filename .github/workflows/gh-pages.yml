@@ -19,8 +19,6 @@ jobs:
     steps:
       - name:
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -39,7 +37,7 @@ jobs:
             python-version: 3.11
 
       - name: Install dependencies
-        run: pip install frontmatter GitPython
+        run: pip install -r requirements.txt
 
       - name: Prepare Contents
         run: python hugo_build.py
