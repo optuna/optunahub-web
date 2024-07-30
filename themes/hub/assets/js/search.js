@@ -5,13 +5,14 @@ const app = createApp({
     const query = ref(new URLSearchParams(location.search).get('q') || '');
     const fuse = ref(null);
     const docs = computed(() => {
+      let docs = [];
       if (fuse.value) {
+        docs = fuse.value._docs.map((item) => ({ item }));
         if (query.value) {
-          return fuse.value.search(query.value);
+          docs = fuse.value.search(query.value);
         }
-        return fuse.value._docs.map((item) => ({ item }));
       }
-      return [];
+      return docs.sort((a, b) => (b.item.last_update_epoch - a.item.last_update_epoch));
     });
 
     fetch('/index.json')

@@ -38,6 +38,9 @@ jobs:
         with:
             python-version: 3.11
 
+      - name: Install dependencies
+        run: pip install -r requierements.txt
+
       - name: Prepare Contents
         run: python hugo_build.py
 
