@@ -29,3 +29,7 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+li.linkedin-share-button > span {
+  vertical-align: baseline !important;
+}
