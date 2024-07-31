@@ -5,18 +5,18 @@ const app = createApp({
     const query = ref(new URLSearchParams(location.search).get('q') || '');
     const fuse = ref(null);
     const docs = computed(() => {
-      let data = [];
       if (fuse.value) {
-        data = fuse.value._docs.map((item) => ({ item }));
         if (query.value) {
-          data = fuse.value.search(query.value);
+          return fuse.value.search(query.value).map((item) => ({
+            item: { ...item.item, updated_at: dayjs(item.item.updated_at) },
+            refIndex: item.refIndex
+          })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
         }
+        return fuse.value._docs.map((item) => ({
+          item: { ...item, updated_at: dayjs(item.updated_at) }
+        })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
       }
-      data.map((item) => {
-        item.item.updated_at = dayjs(item.item.updated_at)
-      });
-      data.sort((a, b) => (b.item.updated_at - a.item.updated_at));
-      return data;
+      return [];
     });
 
     fetch('/index.json')
