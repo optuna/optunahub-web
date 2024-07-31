@@ -31,16 +31,15 @@ def main() -> None:
                 contents = frontmatter.load(readme_md)
                 with open(f"{hugo_dir}/index.md", "w") as index_md:
                     # Last update for the package
-                    last_update_epoch = next(
+                    updated_at_epoch = next(
                         repo.iter_commits(
                             paths=tree[f"{package_dir}/{c}/{p}"].path, max_count=1
                         )
                     ).committed_date
-                    contents["last_update_epoch"] = last_update_epoch
-                    last_update = datetime.datetime.fromtimestamp(
-                        last_update_epoch
-                    ).strftime("%Y-%m-%d")
-                    contents["last_update"] = last_update
+                    updated_at_iso = datetime.datetime.fromtimestamp(
+                        updated_at_epoch
+                    ).isoformat()
+                    contents["updated_at"] = updated_at_iso
                     index_md.write(frontmatter.dumps(contents))
 
 

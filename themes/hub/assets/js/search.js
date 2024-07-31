@@ -5,14 +5,18 @@ const app = createApp({
     const query = ref(new URLSearchParams(location.search).get('q') || '');
     const fuse = ref(null);
     const docs = computed(() => {
-      let docs = [];
+      let data = [];
       if (fuse.value) {
-        docs = fuse.value._docs.map((item) => ({ item }));
+        data = fuse.value._docs.map((item) => ({ item }));
         if (query.value) {
-          docs = fuse.value.search(query.value);
+          data = fuse.value.search(query.value);
         }
       }
-      return docs.sort((a, b) => (b.item.last_update_epoch - a.item.last_update_epoch));
+      data.map((item) => {
+        item.item.updated_at = dayjs(item.item.updated_at)
+      });
+      data.sort((a, b) => (dayjs(b.item.updated_at) - dayjs(a.item.updated_at)));
+      return data;
     });
 
     fetch('/index.json')

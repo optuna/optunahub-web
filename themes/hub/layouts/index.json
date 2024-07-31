@@ -13,7 +13,7 @@
   {{- if $imageUrl }}
     {{- $imageUrl = (.Resources.GetMatch $imageUrl).RelPermalink }}
   {{- end }}
-  {{- $scratch.Add "index" (dict "title" .Title "tags" ($scratch.Get "tags") "description" .Description "image" $imageUrl "permalink" .RelPermalink "last_update" .Params.last_update  "last_update_epoch" .Params.last_update_epoch) }}
+  {{- $scratch.Add "index" (dict "title" .Title "tags" ($scratch.Get "tags") "description" .Description "image" $imageUrl "permalink" .RelPermalink "updated_at" .Params.updated_at) }}
   {{- $scratch.Delete "tags" }}
 {{- end }}
 {{- $scratch.Get "index" | jsonify }}
