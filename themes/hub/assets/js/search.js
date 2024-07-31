@@ -15,7 +15,7 @@ const app = createApp({
       data.map((item) => {
         item.item.updated_at = dayjs(item.item.updated_at)
       });
-      data.sort((a, b) => (dayjs(b.item.updated_at) - dayjs(a.item.updated_at)));
+      data.sort((a, b) => (b.item.updated_at - a.item.updated_at));
       return data;
     });
 
