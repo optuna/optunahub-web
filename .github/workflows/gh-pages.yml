@@ -51,8 +51,7 @@ jobs:
           path: public
 
   deploy:
-    if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule')
-    if: github.event_name != 'pull_request'
+    if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule' && github.event_name != 'pull_request')
     needs: build
     permissions:
       pages: write
