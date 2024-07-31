@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule')
     runs-on: ubuntu-latest
     permissions:
         contents: write
@@ -50,7 +51,7 @@ jobs:
           path: public
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule' && github.event_name != 'pull_request')
     needs: build
     permissions:
       pages: write
