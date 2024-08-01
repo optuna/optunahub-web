@@ -9,7 +9,7 @@
   {{- $imageUrl := false }}
   {{- range $match := (findRESubmatch `(?i)<img[^>]+src=["']([^"']+)["']` .Content)}}
     {{- $foundUrl := index $match 1 }}
-    {{- if and $foundUrl (not (or (strings.HasPrefix $foundUrl "http") (strings.HasPrefix $foundUrl "https"))) }}
+    {{- if and $foundUrl (not (or (strings.HasPrefix $foundUrl "http://") (strings.HasPrefix $foundUrl "https://"))) }}
       {{- $imageUrl = $foundUrl }}
       {{- break }}
     {{- end }}
