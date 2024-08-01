@@ -29,7 +29,7 @@ def main() -> None:
             with open(f"{registry_dir}/{c}/{p}/README.md", "r") as readme_md:
                 contents = frontmatter.load(readme_md)
                 with open(f"{hugo_dir}/index.md", "w") as index_md:
-                    # Last update for the package
+                    # Last update for the package.
                     updated_at_epoch = next(
                         repo.iter_commits(
                             paths=tree[f"{package_dir}/{c}/{p}"].path, max_count=1
