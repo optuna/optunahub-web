@@ -19,7 +19,7 @@ def main() -> None:
         for p in packages:
             hugo_dir = f"content/{c}/{p}"
 
-            # Copy README.md and images
+            # Copy README.md and images.
             os.makedirs(hugo_dir, exist_ok=True)
             imgdir = f"{registry_dir}/{c}/{p}/images"
             if os.path.exists(imgdir):
