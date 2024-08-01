@@ -29,6 +29,7 @@ jobs:
       - name: Checkout Registry
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           repository: optuna/optunahub-registry
           path: optunahub-registry
 
