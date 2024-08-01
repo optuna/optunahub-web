@@ -7,8 +7,12 @@
     {{- $scratch.Add "tags" (dict "title" .LinkTitle "permalink" (printf "/?%s" ((querify "q" .LinkTitle) | safeURL))) }}
   {{- end }}
   {{- $imageUrl := false }}
-  {{- with findRESubmatch `(?i)<img[^>]+src=["']([^"']+)["']` .Content 1 }}
-    {{- $imageUrl = index (index . 0) 1 }}
+  {{- range $match := (findRESubmatch `(?i)<img[^>]+src=["']([^"']+)["']` .Content)}}
+    {{- $foundUrl := index $match 1 }}
+    {{- if and $foundUrl (not (or (strings.HasPrefix $foundUrl "http") (strings.HasPrefix $foundUrl "https"))) }}
+      {{- $imageUrl = $foundUrl }}
+      {{- break }}
+    {{- end }}
   {{- end }}
   {{- if $imageUrl }}
     {{- $imageUrl = (.Resources.GetMatch $imageUrl).RelPermalink }}
