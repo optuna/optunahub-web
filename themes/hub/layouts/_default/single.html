@@ -28,6 +28,8 @@
         {{- end }}
       </ul>
     </dd>
+    <dt class="float-start me-2">Last update</dt>
+    <dd class="clearfix mb-1">{{ time.Format "2006-01-02" (time.AsTime .Params.updated_at) }}</dd>
   </dl>
   {{- end }}
 

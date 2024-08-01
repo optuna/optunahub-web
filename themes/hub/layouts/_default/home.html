@@ -20,6 +20,9 @@
               </li>
             </ul>
           </div>
+          <div class="card-footer small text-muted text-end">
+            Last update: [[ doc.item.updated_at.format("YYYY-MM-DD") ]]
+          </div>
         </div>
       </div>
     </div>
@@ -31,5 +34,6 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   {{- end }}
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   {{ partialCached "head/search-js.html" . }}
 {{ end }}

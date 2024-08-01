@@ -7,9 +7,14 @@ const app = createApp({
     const docs = computed(() => {
       if (fuse.value) {
         if (query.value) {
-          return fuse.value.search(query.value);
+          return fuse.value.search(query.value).map((item) => ({
+            item: { ...item.item, updated_at: dayjs(item.item.updated_at) },
+            refIndex: item.refIndex
+          })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
         }
-        return fuse.value._docs.map((item) => ({ item }));
+        return fuse.value._docs.map((item) => ({
+          item: { ...item, updated_at: dayjs(item.updated_at) }
+        })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
       }
       return [];
     });
