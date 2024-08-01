@@ -25,7 +25,7 @@ def main() -> None:
             if os.path.exists(imgdir):
                 shutil.copytree(imgdir, f"{hugo_dir}/images", dirs_exist_ok=True)
 
-            # Read README.md and create index.md from it with modifications
+            # Read README.md and create index.md from it with modifications.
             with open(f"{registry_dir}/{c}/{p}/README.md", "r") as readme_md:
                 contents = frontmatter.load(readme_md)
                 with open(f"{hugo_dir}/index.md", "w") as index_md:
