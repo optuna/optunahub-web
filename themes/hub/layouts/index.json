@@ -6,18 +6,7 @@
   {{- range (.GetTerms "tags") }}
     {{- $scratch.Add "tags" (dict "title" .LinkTitle "permalink" (printf "/?%s" ((querify "q" .LinkTitle) | safeURL))) }}
   {{- end }}
-  {{- $imageUrl := false }}
-  {{- range $match := (findRESubmatch `(?i)<img[^>]+src=["']([^"']+)["']` .Content)}}
-    {{- $foundUrl := index $match 1 }}
-    {{- if and $foundUrl (not (or (strings.HasPrefix $foundUrl "http://") (strings.HasPrefix $foundUrl "https://"))) }}
-      {{- $imageUrl = $foundUrl }}
-      {{- break }}
-    {{- end }}
-  {{- end }}
-  {{- if $imageUrl }}
-    {{- $imageUrl = (.Resources.GetMatch $imageUrl).RelPermalink }}
-  {{- end }}
-  {{- $scratch.Add "index" (dict "title" .Title "tags" ($scratch.Get "tags") "description" .Description "image" $imageUrl "permalink" .RelPermalink "updated_at" .Params.updated_at) }}
+  {{- $scratch.Add "index" (dict "title" .Title "tags" ($scratch.Get "tags") "description" .Description "image" (partial "thumbnail.html" .) "permalink" .RelPermalink "updated_at" .Params.updated_at) }}
   {{- $scratch.Delete "tags" }}
 {{- end }}
 {{- $scratch.Get "index" | jsonify }}
