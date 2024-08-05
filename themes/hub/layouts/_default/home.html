@@ -5,6 +5,12 @@
     <form @submit.stop.prevent="onSubmit">
       <input name="q" class="form-control" v-model="query" placeholder="Search..." />
     </form>
+    <ul class="nav gap-1 mt-1">
+      <li class="nav-item"><a class="badge text-primary border border-primary" href="{{ .Permalink }}">All</a></li>
+      <li class="nav-item"><a class="badge text-primary border border-primary" href="?q=Sampler">Sampler</a></li>
+      <li class="nav-item"><a class="badge text-primary border border-primary" href="?q=Visualization">Visualization</a></li>
+      <li class="nav-item"><a class="badge text-primary border border-primary" href="?q=Pruner">Pruner</a></li>
+    </ul>
     <div class="row">
       <div class="col-12 col-md-6 mt-4 d-flex" v-for="doc in docs">
         <div class="card w-100">
