@@ -1,4 +1,18 @@
-<header>
+{{- if .IsHome }}
+<header class="page-header mb-3">
+  <div class="container py-5">
+    <h1 class="fw-bold">{{- site.Title -}}</h1>
+    {{- if .Description }}
+    <p class="h6 fw-normal">{{ .Description }}</p>
+    {{- end }}
+    <p>
+      <a class="btn btn-secondary" href="https://optuna.github.io/optunahub-registry/">Get Started</a>
+      <a class="btn btn-secondary" href="https://github.com/optuna/optunahub-registry">Register Your Package</a>
+    </p>
+  </div>
+</header>
+{{- else }}
+<header class="container pt-3">
   <h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -6,7 +20,7 @@
           {{- site.Title -}}
         </a>
       </li>
-      {{- if and (not .IsHome) (not (eq .Kind "404")) }}
+      {{- if not (eq .Kind "404") }}
       <li class="breadcrumb-item">
         <a href="{{ .Permalink }}">
           {{- .Title -}}
@@ -19,3 +33,4 @@
   <p>{{ .Description }}</p>
   {{- end }}
 </header>
+{{- end }}

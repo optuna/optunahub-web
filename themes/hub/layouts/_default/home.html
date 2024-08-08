@@ -1,5 +1,7 @@
 {{ define "main" }}
+  {{- if not .IsHome }}
   {{ .Content }}
+  {{- end }}
 
   <div id="search" v-cloak>
     <form @submit.stop.prevent="onSubmit">
