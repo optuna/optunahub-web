@@ -10,6 +10,12 @@ const app = createApp({
       }
       return [];
     });
+    const page = ref(1);
+    const perSize = ref(20);
+    const totalPages = computed(() => Math.ceil(docs.value.length / perSize.value));
+    const pageDocs = computed(() =>
+      docs.value.slice((page.value - 1) * perSize.value, page.value * perSize.value),
+    );
 
     fetch('/index.json')
       .then((resp) => resp.json())
@@ -31,6 +37,9 @@ const app = createApp({
     return {
       query,
       docs,
+      page,
+      totalPages,
+      pageDocs,
       onSubmit() {
         history.pushState('', '', `/?${new URLSearchParams({ q: query.value })}`);
       },
