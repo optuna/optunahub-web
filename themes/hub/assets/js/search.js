@@ -6,15 +6,7 @@ const app = createApp({
     const fuse = ref(null);
     const docs = computed(() => {
       if (fuse.value) {
-        if (query.value) {
-          return fuse.value.search(query.value).map((item) => ({
-            item: { ...item.item, updated_at: dayjs(item.item.updated_at) },
-            refIndex: item.refIndex
-          })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
-        }
-        return fuse.value._docs.map((item) => ({
-          item: { ...item, updated_at: dayjs(item.updated_at) }
-        })).sort((a, b) => (b.item.updated_at - a.item.updated_at));
+        return fuse.value.search(query.value || '!^');
       }
       return [];
     });
@@ -22,12 +14,18 @@ const app = createApp({
     fetch('/index.json')
       .then((resp) => resp.json())
       .then((data) => {
-        fuse.value = new Fuse(data, {
-          threshold: 0.1,
-          ignoreLocation: true,
-          useExtendedSearch: true,
-          keys: ['title', 'description', 'tags.title'],
-        });
+        fuse.value = new Fuse(
+          data
+            .map((item) => ({ ...item, updated_at: dayjs(item.updated_at) }))
+            .sort((a, b) => b.updated_at - a.updated_at),
+          {
+            threshold: 0.1,
+            ignoreLocation: true,
+            useExtendedSearch: true,
+            keys: ['title', 'description', 'tags.title'],
+            sortFn: (a, b) => a.idx - b.idx,
+          },
+        );
       });
 
     return {
