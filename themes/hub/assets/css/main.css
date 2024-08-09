@@ -21,15 +21,45 @@ a:hover {
   --bs-link-decoration: var(--bs-link-hover-decoration);
 }
 
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: Montserrat, var(--bs-body-font-family);
+}
+
 .highlight pre {
   padding: 0.25rem 0.5rem;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
 li.linkedin-share-button > span {
   vertical-align: baseline !important;
+}
+
+.navbar {
+  --bs-navbar-nav-link-padding-x: 0.75rem;
+}
+
+.page-header {
+  color: #fff;
+  background-color: #b2afab;
+  background-image: url('/bg.jpg');
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+.page-header::before {
+  background-color: rgba(0, 0, 0, .4);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 2;
 }

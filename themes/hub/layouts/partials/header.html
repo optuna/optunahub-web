@@ -1,4 +1,39 @@
-<header>
+{{- if .IsHome }}
+<header class="page-header mb-3">
+  <div class="container py-5">
+    <h1 class="fw-bold">{{- site.Title -}}</h1>
+    {{- if .Description }}
+    <p class="h6 fw-normal">{{ .Description }}</p>
+    {{- end }}
+    <p>
+      <a class="btn btn-secondary" href="https://optuna.github.io/optunahub/">Get Started</a>
+      <a class="btn btn-secondary" href="https://github.com/optuna/optunahub-registry">Register Your Package</a>
+    </p>
+  </div>
+</header>
+{{- else if not (strings.Contains .Permalink "static/") }}
+<header class="container pt-3 pb-5 text-center">
+  <p class="text-start">
+    <a href="{{ "" | absURL }}">
+      &laquo; Back to top page
+    </a>
+  </p>
+  <h1>{{- .Title -}}</h1>
+  {{- if .Description }}
+  <p>{{ .Description }}</p>
+  {{- end }}
+  <ul class="nav gap-1 justify-content-center mb-2">
+    {{- range (.GetTerms "tags") }}
+    <li class="nav-item"><a href="{{ printf "/?%s" ((querify "q" .LinkTitle) | safeURL) }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+  <ul class="nav gap-1 justify-content-end">
+    <li class="nav-item"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-hashtags="OptunaHub">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+    <li class="nav-item linkedin-share-button"><script src="https://platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/Share" data-url="{{ .Permalink }}"></script></li>
+  </ul>
+</header>
+{{- else }}
+<header class="container pt-3">
   <h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -6,7 +41,7 @@
           {{- site.Title -}}
         </a>
       </li>
-      {{- if and (not .IsHome) (not (eq .Kind "404")) }}
+      {{- if not (eq .Kind "404") }}
       <li class="breadcrumb-item">
         <a href="{{ .Permalink }}">
           {{- .Title -}}
@@ -19,3 +54,4 @@
   <p>{{ .Description }}</p>
   {{- end }}
 </header>
+{{- end }}

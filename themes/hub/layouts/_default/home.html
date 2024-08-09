@@ -1,5 +1,7 @@
 {{ define "main" }}
+  {{- if not .IsHome }}
   {{ .Content }}
+  {{- end }}
 
   <div id="search" v-cloak>
     <form @submit.stop.prevent="onSubmit">
@@ -12,7 +14,7 @@
       <li class="nav-item"><a class="badge text-primary border border-primary" href="?q=Pruner">Pruner</a></li>
     </ul>
     <div class="row">
-      <div class="col-12 col-md-6 mt-4 d-flex" v-for="doc in docs">
+      <div class="col-12 col-md-6 mt-4 d-flex" v-for="doc in pageDocs">
         <div class="card w-100">
           <div class="card-body d-flex flex-column">
             <h2 class="h5"><a :href="[[ doc.item.permalink ]]">[[ doc.item.title ]]</a></h2>
@@ -32,6 +34,17 @@
         </div>
       </div>
     </div>
+    <ul class="pagination mt-4 justify-content-center" v-if="totalPages>1">
+      <li class="page-item" v-bind:class="{disabled: page==1}">
+        <a class="page-link" href="#" v-on:click="page-=1">&laquo;</a>
+      </li>
+      <li class="page-item" v-for="p in totalPages">
+        <a class="page-link" v-bind:class="{active: page==p}" href="#" v-on:click="page=p">[[ p ]]</a>
+      </li>
+      <li class="page-item" v-bind:class="{disabled: page==totalPages}">
+        <a class="page-link" href="#" v-on:click="page+=1">&raquo;</a>
+      </li>
+    </ul>
   </div>
 
   {{- if eq hugo.Environment "development" }}
