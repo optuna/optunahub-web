@@ -12,7 +12,12 @@
   </div>
 </header>
 {{- else if not (strings.Contains .Permalink "static/") }}
-<header class="container py-5 text-center">
+<header class="container pt-3 pb-5 text-center">
+  <p class="text-start">
+    <a href="{{ "" | absURL }}">
+      &laquo; Back to top page
+    </a>
+  </p>
   <h1>{{- .Title -}}</h1>
   {{- if .Description }}
   <p>{{ .Description }}</p>
