@@ -27,10 +27,12 @@
     <li class="nav-item"><a href="{{ printf "/?%s" ((querify "q" .LinkTitle) | safeURL) }}" class="badge text-primary border border-primary">{{ .LinkTitle }}</a></li>
     {{- end }}
   </ul>
+  {{- if not (eq .Kind "404") }}
   <ul class="nav gap-1 justify-content-end">
     <li class="nav-item"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-hashtags="OptunaHub">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></li>
     <li class="nav-item linkedin-share-button"><script src="https://platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/Share" data-url="{{ .Permalink }}"></script></li>
   </ul>
+  {{- end }}
 </header>
 {{- else }}
 <header class="container pt-3">
