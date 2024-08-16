@@ -5,6 +5,7 @@ const app = createApp({
     const query = ref(new URLSearchParams(location.search).get('q') || '');
     const fuse = ref(null);
     const docs = computed(() => {
+      page.value = 1
       if (fuse.value) {
         return fuse.value.search(query.value || '!^');
       }
