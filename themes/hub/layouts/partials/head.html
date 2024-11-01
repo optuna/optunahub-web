@@ -23,6 +23,8 @@
 {{- $imageUrl := partial "thumbnail.html" . }}
 {{- if $imageUrl }}
 <meta property="og:image" content="{{ absURL $imageUrl }}">
+{{- else }}
+<meta property="og:image" content="{{ absURL (resources.Get "img/optuna-logo@3x.png").RelPermalink }}">
 {{- end }}
 <meta name="twitter:card" content="summary_large_image">
 <title>{{ $title }}</title>
