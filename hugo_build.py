@@ -13,7 +13,7 @@ def main() -> None:
 
     package_dir = "package"
     registry_dir = f"optunahub-registry/{package_dir}"
-    categories = ["samplers", "pruners", "visualization"]
+    categories = ["samplers", "pruners", "visualization", "benchmarks"]
     for c in categories:
         packages = os.listdir(f"{registry_dir}/{c}")
         for p in packages:
