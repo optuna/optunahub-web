@@ -20,6 +20,13 @@ enableRobotsTXT = true
   [markup.highlight]
     guessSyntax = true
     style = 'friendly'
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['$', '$'], ['$`', '`$']]
 
 [module]
   [module.hugoVersion]
