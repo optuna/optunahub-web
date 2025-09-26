@@ -1,6 +1,8 @@
 OptunaHub Web
 ===
 
+![OptunaHub](https://github.com/user-attachments/assets/ee24b6eb-a431-4e02-ae52-c2538ffe01ee)
+
 This is the repository of the frontend for [OptunaHub](https://hub.optuna.org).
 
 - If you find issues and/or bugs on the website, please report us via [GitHub issues](https://github.com/optuna/optunahub-web/issues).
