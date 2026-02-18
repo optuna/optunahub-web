@@ -23,6 +23,13 @@
       </dd>
       <dt>Last update</dt>
       <dd>{{ time.Format "2006-01-02" (time.AsTime .Params.updated_at) }}</dd>
+      <dt>Discussions & Issues</dt>
+      <dd>
+        <a href="https://github.com/optuna/optunahub-registry/issues/new?labels=general-discussions&title=[{{ $packageName }}]%20">Create a discussion</a>
+      </dd>
+      <dd>
+        <a href="https://github.com/optuna/optunahub-registry/issues/new?template=bug-report.yml&title=[{{ $packageName }}]%20">Create a bug report</a>
+      </dd>
     </dl>
   </div>
   {{- end }}
