@@ -21,6 +21,16 @@
           {{- end -}}
         </ul>
       </dd>
+      {{- if .Params.requirements }}
+      <dt>Dependencies <a href="/{{ $packageName }}/requirements.txt">(.txt)</a></dt>
+      <dd>
+        <ul class="m-0 ps-3" style="max-height: 10rem; overflow-y: auto;">
+          {{- range .Params.requirements -}}
+          <li>{{ . }}</li>
+          {{- end -}}
+        </ul>
+      </dd>
+      {{- end }}
       <dt>Last update</dt>
       <dd>{{ time.Format "2006-01-02" (time.AsTime .Params.updated_at) }}</dd>
       <dt>Discussions & Issues</dt>

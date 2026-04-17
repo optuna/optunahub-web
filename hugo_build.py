@@ -26,9 +26,12 @@ def main() -> None:
                 shutil.copytree(imgdir, f"{hugo_dir}/images", dirs_exist_ok=True)
 
             # Copy requirements.txt if exists.
+            reqs = None
             reqfile = f"{registry_dir}/{c}/{p}/requirements.txt"
             if os.path.exists(reqfile):
                 shutil.copy2(reqfile, hugo_dir)
+                with open(reqfile, "r") as req_f:
+                    reqs = [pkg for line in req_f if (pkg := line.split("#")[0].strip())]
 
             # Read README.md and create index.md from it with modifications.
             with open(f"{registry_dir}/{c}/{p}/README.md", "r") as readme_md:
@@ -44,6 +47,8 @@ def main() -> None:
                         updated_at_epoch
                     ).isoformat()
                     contents["updated_at"] = updated_at_iso
+                    if reqs is not None:
+                        contents["requirements"] = reqs
                     index_md.write(frontmatter.dumps(contents))
 
 
