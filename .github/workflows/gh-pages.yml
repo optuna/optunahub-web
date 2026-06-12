@@ -9,12 +9,15 @@ on:
       - cron: '0 * * * *'  # Update every hour
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule')
     runs-on: ubuntu-latest
     permissions:
-        contents: write
+        contents: read
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -56,6 +59,7 @@ jobs:
     if: (github.event_name == 'schedule' && github.repository == 'optuna/optunahub-web') || (github.event_name != 'schedule' && github.event_name != 'pull_request')
     needs: build
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:

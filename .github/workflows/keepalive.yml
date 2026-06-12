@@ -9,9 +9,13 @@ concurrency:
   group: keepalive
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   keepalive:
     permissions:
+      contents: read
       actions: write
     runs-on: ubuntu-latest
     steps:
