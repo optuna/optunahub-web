@@ -3,6 +3,11 @@
   {{ .Content }}
   {{- end }}
 
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    📣 Our paper <a class="alert-link" href="https://www.jmlr.org/papers/v27/25-2424.html">OptunaHub: A Platform for Black-Box Optimization</a> has been published in the Journal of Machine Learning Research.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <div id="search" v-cloak>
     <form @submit.stop.prevent="onSubmit">
       <input name="q" class="form-control" v-model="query" placeholder="Search..." />
