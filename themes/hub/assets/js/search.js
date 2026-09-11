@@ -1,5 +1,21 @@
 const { createApp, ref, computed } = Vue;
 
+const searchKeys = ['title', 'description', 'tags.title'];
+
+// Fuse's extended search ANDs space-separated terms within a single field value,
+// so a query like "Constrained Optimization Benchmark" never matches a package
+// that carries those words in different fields (or in different tags). Build a
+// logical query instead, requiring every term to match in at least one field.
+const buildQuery = (query) => {
+  const terms = query.trim().split(/\s+/).filter(Boolean);
+  if (terms.length === 0) {
+    return '!^'; // matches everything
+  }
+  return {
+    $and: terms.map((term) => ({ $or: searchKeys.map((key) => ({ [key]: term })) })),
+  };
+};
+
 const app = createApp({
   setup() {
     const query = ref(new URLSearchParams(location.search).get('q') || '');
@@ -7,7 +23,7 @@ const app = createApp({
     const docs = computed(() => {
       page.value = 1
       if (fuse.value) {
-        return fuse.value.search(query.value || '!^');
+        return fuse.value.search(buildQuery(query.value));
       }
       return [];
     });
@@ -29,7 +45,7 @@ const app = createApp({
             threshold: 0.1,
             ignoreLocation: true,
             useExtendedSearch: true,
-            keys: ['title', 'description', 'tags.title'],
+            keys: searchKeys,
             sortFn: (a, b) => a.idx - b.idx,
           },
         );
